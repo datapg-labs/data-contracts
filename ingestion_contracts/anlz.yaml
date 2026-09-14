@@ -1,0 +1,52 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:anlz
+info:
+  title: SAP S/4HANA ANLZ
+  version: 1.1.0
+  description: Time-dependent asset allocations.
+  owner: Finance Data Engineering Team
+models:
+  anlz:
+    type: table
+    fields:
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+        required: true
+      anln1:
+        type: string
+        description: Main asset number.
+        primary_key: true
+        required: true
+      anln2:
+        type: string
+        description: Asset subnumber.
+        primary_key: true
+        required: true
+      bdatu:
+        type: string
+        description: Date to which the segment is valid.
+        primary_key: true
+        required: true
+      adatu:
+        type: string
+        description: Date from which the segment is valid.
+      kostl:
+        type: string
+        description: Cost center.
+      werksi:
+        type: string
+        description: Plant.
+      gsber:
+        type: string
+        description: Business area.
+      prctr:
+        type: string
+        description: Profit center.
+      segment:
+        type: string
+        description: Segment for segmental reporting.
+      lstar:
+        type: string
+        description: Activity type.

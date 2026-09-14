@@ -1,0 +1,436 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:bseg
+info:
+  title: SAP S/4HANA BSEG Accounting Document Segment
+  version: 1.0.0
+  description: 'SAP S/4HANA BSEG table containing accounting document line items.
+    Stores detailed financial posting information including GL accounts, customer/vendor
+    postings, tax, currencies, payment information, and controlling dimensions.
+
+    '
+  owner: Finance Data Engineering Team
+servers:
+  production:
+    type: sap
+    environment: prod
+terms:
+  usage: 'Internal enterprise financial reporting, reconciliation, audit, and analytics
+    use only.
+
+    '
+models:
+  bseg:
+    type: table
+    description: 'One record per accounting document line item in SAP FI.
+
+      '
+    primaryKey:
+    - mandt
+    - bukrs
+    - gjahr
+    - belnr
+    - buzei
+    fields:
+      mandt:
+        type: string
+        required: true
+        description: SAP client.
+      rldnr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      bukrs:
+        type: string
+        required: true
+        description: Company code.
+      gjahr:
+        type: string
+        required: true
+        description: Fiscal year.
+      belnr:
+        type: string
+        required: true
+        description: Accounting document number.
+      buzei:
+        type: string
+        required: true
+        description: Accounting document line item.
+      ryear:
+        type: string
+        description: Auto-added field from Kafka schema.
+      drcrk:
+        type: string
+        description: Auto-added field from Kafka schema.
+      poper:
+        type: string
+        description: Auto-added field from Kafka schema.
+      fiscyearper:
+        type: string
+        description: Auto-added field from Kafka schema.
+      budat:
+        type: string
+        description: Auto-added field from Kafka schema.
+      bldat:
+        type: string
+        description: Auto-added field from Kafka schema.
+      blart:
+        type: string
+        description: Auto-added field from Kafka schema.
+      bschl:
+        type: string
+        description: Posting key.
+      bstat:
+        type: string
+        description: Auto-added field from Kafka schema.
+      linetype:
+        type: string
+        description: Auto-added field from Kafka schema.
+      ktosl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      accasty:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rtcur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rwcur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rhcur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rkcur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rocur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rvcur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rbcur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rccur:
+        type: string
+        description: Auto-added field from Kafka schema.
+      tsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      wsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      hsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      ksl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      osl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      vsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      bsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      csl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      dsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      esl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      fsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      gsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      msl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rmsl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      kokrs:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rcntr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      prctr:
+        type: string
+        description: Profit center.
+      rfarea:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rbusa:
+        type: string
+        description: Auto-added field from Kafka schema.
+      segment:
+        type: string
+        description: Segment for financial reporting.
+      scntr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      pprctr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      sfarea:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rassc:
+        type: string
+        description: Auto-added field from Kafka schema.
+      racct:
+        type: string
+        description: Auto-added field from Kafka schema.
+      kunnr:
+        type: string
+        description: Customer account number.
+      lifnr:
+        type: string
+        description: Vendor account number.
+      matnr:
+        type: string
+        description: Material number.
+      werks:
+        type: string
+        description: Plant.
+      aufnr:
+        type: string
+        description: Internal order number.
+      anln1:
+        type: string
+        description: Main asset number.
+      anln2:
+        type: string
+        description: Asset sub-number.
+      paobjnr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      kostl:
+        type: string
+        description: Cost center.
+      mwskz:
+        type: string
+        description: Tax code.
+      taxCountry:
+        type: string
+        description: Auto-added field from Kafka schema.
+      txgrp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      hwbas:
+        type: string
+        description: Auto-added field from Kafka schema.
+      fwbas:
+        type: string
+        description: Auto-added field from Kafka schema.
+      mwsts:
+        type: string
+        description: Auto-added field from Kafka schema.
+      awtyp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      awkey:
+        type: string
+        description: Auto-added field from Kafka schema.
+      awitem:
+        type: string
+        description: Auto-added field from Kafka schema.
+      aworg:
+        type: string
+        description: Auto-added field from Kafka schema.
+      awsys:
+        type: string
+        description: Auto-added field from Kafka schema.
+      subta:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rebzg:
+        type: string
+        description: Invoice reference document.
+      rebzj:
+        type: string
+        description: Invoice reference fiscal year.
+      rebzz:
+        type: string
+        description: Auto-added field from Kafka schema.
+      hbkid:
+        type: string
+        description: Auto-added field from Kafka schema.
+      hktid:
+        type: string
+        description: Auto-added field from Kafka schema.
+      zlsch:
+        type: string
+        description: Payment method.
+      zlspr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      valut:
+        type: string
+        description: Auto-added field from Kafka schema.
+      zuonr:
+        type: string
+        description: Assignment number.
+      xref1:
+        type: string
+        description: Reference key 1.
+      bwkey:
+        type: string
+        description: Auto-added field from Kafka schema.
+      bwtar:
+        type: string
+        description: Auto-added field from Kafka schema.
+      vprsv:
+        type: string
+        description: Auto-added field from Kafka schema.
+      kalnr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      mlast:
+        type: string
+        description: Auto-added field from Kafka schema.
+      sobkz:
+        type: string
+        description: Auto-added field from Kafka schema.
+      runit:
+        type: string
+        description: Auto-added field from Kafka schema.
+      rvunit:
+        type: string
+        description: Auto-added field from Kafka schema.
+      riunit:
+        type: string
+        description: Auto-added field from Kafka schema.
+      menge:
+        type: number
+        format: decimal
+        precision: 18
+        scale: 3
+        description: Quantity.
+      meins:
+        type: string
+        description: Base unit of measure.
+      usnam:
+        type: string
+        description: Auto-added field from Kafka schema.
+      timestamp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      objnr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      coBelnr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      hrkft:
+        type: string
+        description: Auto-added field from Kafka schema.
+      glvor:
+        type: string
+        description: Auto-added field from Kafka schema.
+      xreversed:
+        type: string
+        description: Auto-added field from Kafka schema.
+      ebeln:
+        type: string
+        description: Auto-added field from Kafka schema.
+      ebelp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      vbeln:
+        type: string
+        description: Auto-added field from Kafka schema.
+      posnr:
+        type: string
+        description: Auto-added field from Kafka schema.
+      vkorg:
+        type: string
+        description: Auto-added field from Kafka schema.
+      vtweg:
+        type: string
+        description: Auto-added field from Kafka schema.
+      spart:
+        type: string
+        description: Auto-added field from Kafka schema.
+      mat_kdgrp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      mat_mvgr1:
+        type: string
+        description: Auto-added field from Kafka schema.
+      xblnr:
+        type: string
+        description: Reference document number.
+      xbilk:
+        type: string
+        description: Auto-added field from Kafka schema.
+      koart:
+        type: string
+        description: Account type indicator.
+      augdt:
+        type: string
+        description: Clearing date.
+      augbl:
+        type: string
+        description: Clearing document number.
+      augcp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      __op:
+        type: string
+        description: Auto-added field from Kafka schema.
+      __ts:
+        type: string
+        description: Auto-added field from Kafka schema.
+quality:
+  type: soda
+  checks:
+  - name: primary_key_uniqueness
+    description: BSEG composite key must be unique.
+    rule: 'duplicate_count(mandt, bukrs, gjahr, belnr, buzei) = 0
+
+      '
+  - name: mandatory_key_fields
+    description: Primary key fields cannot be null.
+    rule: 'missing_count(mandt) = 0 AND missing_count(bukrs) = 0 AND missing_count(gjahr)
+      = 0 AND missing_count(belnr) = 0 AND missing_count(buzei) = 0
+
+      '
+  - name: valid_debit_credit_indicator
+    description: Debit/Credit indicator must be valid.
+    rule: 'invalid_count(shkzg NOT IN (''S'',''H'')) = 0
+
+      '
+  - name: currency_amount_validation
+    description: Document amount cannot be null.
+    rule: 'missing_count(wrbtr) = 0
+
+      '
+  - name: fiscal_year_validation
+    description: Fiscal year must be valid.
+    rule: 'invalid_count(length(gjahr) <> 4) = 0
+
+      '
+servicelevels:
+  freshness:
+    threshold: P1D
+  retention:
+    period: P7Y
+  availability:
+    percentage: 99.5%
+tags:
+- sap
+- s4hana
+- bseg
+- finance
+- fi
+- accounting
+- general-ledger

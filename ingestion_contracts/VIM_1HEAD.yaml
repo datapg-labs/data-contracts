@@ -1,0 +1,156 @@
+dataContractSpecification: "1.1.0"
+
+id: "urn:datacontract:sap:vim:invoice-header"
+
+info:
+  title: "SAP VIM Invoice Header"
+  version: "1.0.0"
+  description: >
+    OpenText Vendor Invoice Management (VIM) invoice header dataset
+    containing vendor invoice processing, workflow, status,
+    and financial posting information.
+
+  owner: "Finance Data Engineering Team"
+
+models:
+
+  vim_invoice_header:
+    type: "table"
+
+    primaryKey:
+      - mandt
+      - docid
+
+    description: >
+      One record per VIM invoice document.
+
+    fields:
+
+      mandt:
+        type: string
+        required: true
+        description: "SAP client."
+
+      docid:
+        type: string
+        required: true
+        description: "Unique VIM document identifier."
+
+      company_code:
+        type: string
+        description: "Company code."
+
+      invoice_number:
+        type: string
+        description: "Vendor invoice number."
+
+      fiscal_year:
+        type: string
+        description: "Fiscal year."
+
+      document_date:
+        type: string
+        description: "Vendor invoice date."
+
+      posting_date:
+        type: string
+        description: "Accounting posting date."
+
+      vendor_number:
+        type: string
+        description: "Vendor identifier."
+
+      currency:
+        type: string
+        description: "Invoice currency."
+
+      gross_amount:
+        type: number
+        format: decimal
+        precision: 18
+        scale: 2
+        description: "Gross invoice amount."
+
+      net_amount:
+        type: number
+        format: decimal
+        precision: 18
+        scale: 2
+        description: "Net invoice amount."
+
+      tax_amount:
+        type: number
+        format: decimal
+        precision: 18
+        scale: 2
+        description: "Invoice tax amount."
+
+      payment_terms:
+        type: string
+        description: "Payment terms."
+
+      payment_method:
+        type: string
+        description: "Payment method."
+
+      workflow_status:
+        type: string
+        description: "Current VIM workflow status."
+
+      approval_status:
+        type: string
+        description: "Invoice approval status."
+
+      processing_status:
+        type: string
+        description: "Invoice processing lifecycle status."
+
+      sap_document_number:
+        type: string
+        description: "Posted SAP FI document number."
+
+      parked_indicator:
+        type: string
+        description: "Indicator whether invoice is parked."
+
+      exception_code:
+        type: string
+        description: "Exception handling code."
+
+      created_by:
+        type: string
+        description: "User who created the invoice."
+
+      created_timestamp:
+        type: integer
+        format: int64
+        description: "Invoice creation timestamp."
+
+      updated_timestamp:
+        type: integer
+        format: int64
+        description: "Last update timestamp."
+
+quality:
+  type: soda
+
+  checks:
+
+    - name: "primary_key_uniqueness"
+      rule: >
+        duplicate_count(mandt, docid) = 0
+
+    - name: "mandatory_fields"
+      rule: >
+        missing_count(docid) = 0
+
+    - name: "gross_amount_validation"
+      rule: >
+        invalid_count(gross_amount < 0) = 0
+
+tags:
+  - sap
+  - vim
+  - opentext
+  - invoices
+  - accounts-payable

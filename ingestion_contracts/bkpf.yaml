@@ -1,0 +1,235 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:bkpf
+info:
+  title: SAP BKPF
+  version: 1.1.0
+  description: SAP S/4HANA BKPF dataset.
+  owner: Finance Data Engineering Team
+models:
+  bkpf:
+    type: table
+    fields:
+      mandt:
+        type: string
+        description: SAP client.
+        primary_key: true
+        required: true
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+        required: true
+      belnr:
+        type: string
+        description: Accounting document number.
+        primary_key: true
+        required: true
+      gjahr:
+        type: string
+        description: Fiscal year.
+        primary_key: true
+        required: true
+      rldnr:
+        type: string
+        description: Ledger.
+      ldgrp:
+        type: string
+        description: Ledger group.
+      budat:
+        type: string
+        description: Posting date.
+      bldat:
+        type: string
+        description: Document date.
+      cpudt:
+        type: string
+        description: Document entry date.
+      upddt:
+        type: string
+        description: Last update date.
+      aedat:
+        type: string
+        description: Change date.
+      vatdate:
+        type: string
+        description: VAT reporting date.
+      wwert:
+        type: string
+        description: Translation date.
+      cputm:
+        type: string
+        description: Document entry time.
+      stodt:
+        type: string
+        description: Reversal posting date.
+      blart:
+        type: string
+        description: Document type.
+      bstat:
+        type: string
+        description: Document status.
+      tcode:
+        type: string
+        description: Transaction code.
+      bktxt:
+        type: string
+        description: Document header text.
+      xblnr:
+        type: string
+        description: Reference document number.
+      awtyp:
+        type: string
+        description: Reference transaction type.
+      awkey:
+        type: string
+        description: Reference object key.
+      awsys:
+        type: string
+        description: Logical source system.
+      glvor:
+        type: string
+        description: Business transaction.
+      lotkz:
+        type: string
+        description: Lot indicator.
+      waers:
+        type: string
+        description: Document currency.
+      hwaer:
+        type: string
+        description: Local currency.
+      hwae2:
+        type: string
+        description: Second local currency.
+      hwae3:
+        type: string
+        description: Third local currency.
+      kursf:
+        type: number
+        description: Exchange rate.
+      kurs2:
+        type: number
+        description: Exchange rate for second local currency.
+      kurs3:
+        type: number
+        description: Exchange rate for third local currency.
+      kurst:
+        type: string
+        description: Exchange rate type.
+      kzwrs:
+        type: string
+        description: Group currency.
+      kzkrs:
+        type: string
+        description: Global company currency.
+      basw2:
+        type: number
+        description: Translation base amount.
+      stblg:
+        type: string
+        description: Reversal document number.
+      stjah:
+        type: string
+        description: Reversal fiscal year.
+      stgrd:
+        type: string
+        description: Reversal reason.
+      bvorg:
+        type: string
+        description: Cross-company transaction number.
+      dbblg:
+        type: string
+        description: Recurring entry document number.
+      xreversal:
+        type: string
+        description: Reversal indicator.
+      xrueb:
+        type: string
+        description: Document posted to previous period indicator.
+      xsnet:
+        type: string
+        description: Net posting indicator.
+      xmwst:
+        type: string
+        description: Tax calculation indicator.
+      xnetb:
+        type: string
+        description: Net document indicator.
+      xstov:
+        type: string
+        description: Reversal document indicator.
+      xzahl:
+        type: string
+        description: Payment transaction indicator.
+      xsauf:
+        type: string
+        description: Document created automatically indicator.
+      xspro:
+        type: string
+        description: Sample document indicator.
+      xfakt:
+        type: string
+        description: Invoice receipt indicator.
+      xnegp:
+        type: string
+        description: Negative posting indicator.
+      xbilk:
+        type: string
+        description: Intercompany billing indicator.
+      bstat2:
+        type: string
+        description: Additional document status.
+      ctxkrs:
+        type: string
+        description: Tax exchange rate.
+      usnam:
+        type: string
+        description: User who created the document.
+      grpId:
+        type: string
+        description: Batch input session group ID.
+      brnch:
+        type: string
+        description: Business place/branch.
+      ppnam:
+        type: string
+        description: Parked by user.
+      prctr:
+        type: string
+        description: Profit center.
+      segment:
+        type: string
+        description: Segment.
+      kokrs:
+        type: string
+        description: Controlling area.
+      rbusa:
+        type: string
+        description: Business area.
+      numpg:
+        type: string
+        description: Number of pages.
+      txkrs:
+        type: string
+        description: Tax exchange rate.
+      reindat:
+        type: string
+        description: Invoice receipt date.
+      hwaer2:
+        type: string
+        description: Alternative local currency 2.
+      hwaer3:
+        type: string
+        description: Alternative local currency 3.
+      glvor2:
+        type: string
+        description: Secondary business transaction.
+      objnr:
+        type: string
+        description: Object number.
+      __op:
+        type: string
+        description: CDC operation type.
+      __ts:
+        type: integer
+        description: CDC processing timestamp.

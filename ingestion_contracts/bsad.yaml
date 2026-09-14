@@ -1,0 +1,172 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:bsad
+
+info:
+  title: SAP S/4HANA BSAD
+  version: 1.1.0
+  description: Customer cleared items. Contains accounts receivable line items that have been cleared through incoming payments, credit memos, or clearing transactions.
+  owner: Finance Data Engineering Team
+
+models:
+  bsad:
+    type: table
+
+    fields:
+
+      mandt:
+        type: string
+        description: SAP client.
+        primary_key: true
+
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+
+      kunnr:
+        type: string
+        description: Customer account number.
+        primary_key: true
+
+      belnr:
+        type: string
+        description: Accounting document number.
+        primary_key: true
+
+      gjahr:
+        type: string
+        description: Fiscal year.
+        primary_key: true
+
+      buzei:
+        type: string
+        description: Accounting document line item.
+        primary_key: true
+
+      augbl:
+        type: string
+        description: Clearing document number.
+
+      augdt:
+        type: string
+        description: Clearing date.
+
+      auggj:
+        type: string
+        description: Clearing fiscal year.
+
+      budat:
+        type: string
+        description: Posting date.
+
+      bldat:
+        type: string
+        description: Document date.
+
+      blart:
+        type: string
+        description: Document type.
+
+      monat:
+        type: string
+        description: Fiscal posting period.
+
+      waers:
+        type: string
+        description: Document currency.
+
+      dmbtr:
+        type: number
+        description: Amount in local currency.
+
+      wrbtr:
+        type: number
+        description: Amount in document currency.
+
+      shkzg:
+        type: string
+        description: Debit or credit indicator.
+
+      zterm:
+        type: string
+        description: Payment terms.
+
+      zfbdt:
+        type: string
+        description: Baseline date for due date calculation.
+
+      netdt:
+        type: string
+        description: Net due date.
+
+      xblnr:
+        type: string
+        description: Reference document number.
+
+      sgtxt:
+        type: string
+        description: Line item text.
+
+      zuonr:
+        type: string
+        description: Assignment number.
+
+      gsber:
+        type: string
+        description: Business area.
+
+      prctr:
+        type: string
+        description: Profit center.
+
+      segment:
+        type: string
+        description: Segment.
+
+      vkorg:
+        type: string
+        description: Sales organization.
+
+      vtweg:
+        type: string
+        description: Distribution channel.
+
+      spart:
+        type: string
+        description: Division.
+
+      land1:
+        type: string
+        description: Customer country.
+
+      regio:
+        type: string
+        description: Customer region.
+
+      xref1:
+        type: string
+        description: Reference key 1.
+
+      xref2:
+        type: string
+        description: Reference key 2.
+
+      xref3:
+        type: string
+        description: Reference key 3.
+
+      business_partner_type:
+        type: string
+        description: CUSTOMER.
+
+      open_cleared_status:
+        type: string
+        description: CLEARED.
+
+      __op:
+        type: string
+        description: CDC operation type.
+
+      __ts:
+        type: integer
+        description: CDC processing timestamp.

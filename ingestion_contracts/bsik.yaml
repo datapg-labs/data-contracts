@@ -1,0 +1,180 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:bsik
+
+info:
+  title: SAP S/4HANA BSIK
+  version: 1.1.0
+  description: Vendor open items. Contains unpaid accounts payable transactions awaiting settlement.
+  owner: Finance Data Engineering Team
+
+models:
+  bsik:
+    type: table
+
+    fields:
+
+      mandt:
+        type: string
+        description: SAP client.
+        primary_key: true
+
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+
+      lifnr:
+        type: string
+        description: Vendor account number.
+        primary_key: true
+
+      belnr:
+        type: string
+        description: Accounting document number.
+        primary_key: true
+
+      gjahr:
+        type: string
+        description: Fiscal year.
+        primary_key: true
+
+      buzei:
+        type: string
+        description: Accounting document line item.
+        primary_key: true
+
+      budat:
+        type: string
+        description: Posting date.
+
+      bldat:
+        type: string
+        description: Document date.
+
+      cpudt:
+        type: string
+        description: Entry date.
+
+      blart:
+        type: string
+        description: Document type.
+
+      waers:
+        type: string
+        description: Document currency.
+
+      dmbtr:
+        type: number
+        description: Amount in local currency.
+
+      wrbtr:
+        type: number
+        description: Amount in document currency.
+
+      shkzg:
+        type: string
+        description: Debit or credit indicator.
+
+      zterm:
+        type: string
+        description: Payment terms.
+
+      zfbdt:
+        type: string
+        description: Baseline date.
+
+      netdt:
+        type: string
+        description: Net due date.
+
+      mwskz:
+        type: string
+        description: Tax code.
+
+      hbkid:
+        type: string
+        description: House bank.
+
+      zlsch:
+        type: string
+        description: Payment method.
+
+      zlspr:
+        type: string
+        description: Payment block.
+
+      empfb:
+        type: string
+        description: Alternative payee.
+
+      xblnr:
+        type: string
+        description: Vendor invoice reference.
+
+      sgtxt:
+        type: string
+        description: Item text.
+
+      zuonr:
+        type: string
+        description: Assignment number.
+
+      gsber:
+        type: string
+        description: Business area.
+
+      prctr:
+        type: string
+        description: Profit center.
+
+      segment:
+        type: string
+        description: Segment.
+
+      ekorg:
+        type: string
+        description: Purchasing organization.
+
+      ekgrp:
+        type: string
+        description: Purchasing group.
+
+      werks:
+        type: string
+        description: Plant.
+
+      land1:
+        type: string
+        description: Vendor country.
+
+      regio:
+        type: string
+        description: Vendor region.
+
+      xref1:
+        type: string
+        description: Reference key 1.
+
+      xref2:
+        type: string
+        description: Reference key 2.
+
+      xref3:
+        type: string
+        description: Reference key 3.
+
+      business_partner_type:
+        type: string
+        description: VENDOR.
+
+      open_cleared_status:
+        type: string
+        description: OPEN.
+
+      __op:
+        type: string
+        description: CDC operation type.
+
+      __ts:
+        type: integer
+        description: CDC processing timestamp.

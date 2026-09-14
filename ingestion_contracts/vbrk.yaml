@@ -1,0 +1,184 @@
+dataContractSpecification: "1.1.0"
+
+id: "urn:datacontract:sap:s4:vbrk"
+
+info:
+  title: "SAP Billing Document Header"
+  version: "1.0.0"
+  description: >
+    SAP SD billing document header dataset containing invoice,
+    customer billing, taxation, pricing, and accounting integration details.
+
+  owner: "Sales Data Engineering Team"
+
+models:
+
+  vbrk:
+    type: "table"
+
+    primaryKey:
+      - mandt
+      - vbeln
+
+    description: >
+      One record per SAP billing document header.
+
+    fields:
+
+      mandt:
+        type: string
+        required: true
+        description: "SAP client."
+
+      vbeln:
+        type: string
+        required: true
+        description: "Billing document number."
+
+      fkart:
+        type: string
+        description: "Billing document type."
+
+      vkorg:
+        type: string
+        description: "Sales organization."
+
+      vtweg:
+        type: string
+        description: "Distribution channel."
+
+      spart:
+        type: string
+        description: "Division."
+
+      kunag:
+        type: string
+        description: "Sold-to customer."
+
+      kunrg:
+        type: string
+        description: "Payer customer."
+
+      fkdat:
+        type: string
+        description: "Billing date."
+
+      erdat:
+        type: string
+        description: "Document creation date."
+
+      ernam:
+        type: string
+        description: "User who created the billing document."
+
+      waerk:
+        type: string
+        description: "Document currency."
+
+      netwr:
+        type: number
+        format: decimal
+        precision: 18
+        scale: 2
+        description: "Net billing value."
+
+      mwsbk:
+        type: number
+        format: decimal
+        precision: 18
+        scale: 2
+        description: "Tax amount."
+
+      fksto:
+        type: string
+        description: "Cancellation indicator."
+
+      sfakn:
+        type: string
+        description: "Cancelled billing document number."
+
+      bukrs:
+        type: string
+        description: "Company code."
+
+      belnr:
+        type: string
+        description: "Accounting document number."
+
+      gjahr:
+        type: string
+        description: "Accounting fiscal year."
+
+      zterm:
+        type: string
+        description: "Payment terms."
+
+      inco1:
+        type: string
+        description: "Incoterms part 1."
+
+      inco2:
+        type: string
+        description: "Incoterms part 2."
+
+      land1:
+        type: string
+        description: "Customer country."
+
+      taxk1:
+        type: string
+        description: "Tax classification 1."
+
+      xblnr:
+        type: string
+        description: "Reference document number."
+
+      rfbsk:
+        type: string
+        description: "Posting status to accounting."
+
+      zzsource_system:
+        type: string
+        description: "Source SAP system identifier."
+
+      zzload_timestamp:
+        type: integer
+        format: int64
+        description: "ETL/ELT ingestion timestamp."
+
+quality:
+  type: soda
+
+  checks:
+
+    - name: "primary_key_uniqueness"
+      rule: >
+        duplicate_count(mandt, vbeln) = 0
+
+    - name: "mandatory_fields"
+      rule: >
+        missing_count(vbeln) = 0
+
+    - name: "billing_amount_validation"
+      rule: >
+        invalid_count(netwr < 0) = 0
+
+    - name: "currency_validation"
+      rule: >
+        missing_count(waerk) = 0
+
+servicelevels:
+
+  freshness:
+    threshold: "P1D"
+
+  retention:
+    period: "P7Y"
+
+tags:
+  - sap
+  - s4hana
+  - vbrk
+  - billing
+  - sd
+  - invoicing

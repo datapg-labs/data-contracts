@@ -1,0 +1,169 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:jde:e1:f1202
+info:
+  title: JD Edwards EnterpriseOne F1202
+  version: 1.1.0
+  description: 'Asset Balances (JD Edwards EnterpriseOne 9.2). Values are stored in RAW JDE encoding:
+    julian dates and implied-decimal integers are NOT dates and decimals in storage. SAP counterpart:
+    ANLZ / ANEP / FAAT_DOC_IT.'
+  owner: Finance Data Engineering Team
+models:
+  f1202:
+    type: table
+    fields:
+      fanumb:
+        type: integer
+        description: 'Asset Item Number. Part of the JDE primary key. SAP counterpart: ANLN1. Physical
+          type in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      falt:
+        type: string
+        description: 'Ledger Type. Part of the JDE primary key. JDE-only; JDE ledger type. Physical type
+          in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      faobj:
+        type: string
+        description: 'Object Account. Part of the JDE primary key. JDE-only; balances are held per account.
+          Physical type in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      fasub:
+        type: string
+        description: 'Subsidiary. Part of the JDE primary key. JDE-only; balances are held per account.
+          Physical type in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      famcu:
+        type: string
+        description: 'Business Unit. Part of the JDE primary key. SAP counterpart: KOSTL. Physical type
+          in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      fafy:
+        type: integer
+        description: 'Fiscal Year. Part of the JDE primary key. SAP counterpart: GJAHR. Physical type
+          in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      faco:
+        type: string
+        description: 'Company. SAP counterpart: BUKRS. Physical type in the lakehouse: varchar.'
+      factry:
+        type: integer
+        description: 'Century. JDE-only; JDE splits century from year. Physical type in the lakehouse:
+          bigint.'
+      faborg:
+        type: integer
+        description: 'Beginning Balance. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE original cost bucket. Physical type in
+          the lakehouse: bigint.'
+      faapyc:
+        type: integer
+        description: 'Prior Year Cumulative. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE prior-year cumulative. Physical type in
+          the lakehouse: bigint.'
+      faan01:
+        type: integer
+        description: 'Period 01 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan02:
+        type: integer
+        description: 'Period 02 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan03:
+        type: integer
+        description: 'Period 03 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan04:
+        type: integer
+        description: 'Period 04 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan05:
+        type: integer
+        description: 'Period 05 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan06:
+        type: integer
+        description: 'Period 06 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan07:
+        type: integer
+        description: 'Period 07 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan08:
+        type: integer
+        description: 'Period 08 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan09:
+        type: integer
+        description: 'Period 09 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan10:
+        type: integer
+        description: 'Period 10 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan11:
+        type: integer
+        description: 'Period 11 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      faan12:
+        type: integer
+        description: 'Period 12 Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE period bucket. Physical type in the lakehouse:
+          bigint.'
+      facrcd:
+        type: string
+        description: 'Currency Code. SAP counterpart: RTCUR. Physical type in the lakehouse: varchar.'
+      fauser:
+        type: string
+        description: 'User ID. SAP counterpart: USNAM. Physical type in the lakehouse: varchar.'
+      fapid:
+        type: string
+        description: 'Program ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      fajobn:
+        type: string
+        description: 'Work Station ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      faupmj:
+        type: integer
+        description: 'Date Updated. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          AEDAT. Physical type in the lakehouse: integer.'
+      faupmt:
+        type: integer
+        description: 'Time Updated. Stored RAW as a JDE HHMMSS integer, not a time. JDE-only; JDE audit
+          column. Physical type in the lakehouse: integer.'
+      __op:
+        type: string
+        description: 'CDC operation flag: I / U / D. Rows with ''D'' are deletions. Physical type in the
+          lakehouse: varchar.'
+      __ts:
+        type: integer
+        description: 'CDC change sequence, monotonic per key. The version column for change-log dedup.
+          Physical type in the lakehouse: bigint.'

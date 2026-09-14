@@ -1,0 +1,168 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:jde:e1:f0902
+info:
+  title: JD Edwards EnterpriseOne F0902
+  version: 1.1.0
+  description: 'Account Balances (JD Edwards EnterpriseOne 9.2). Values are stored in RAW JDE encoding:
+    julian dates and implied-decimal integers are NOT dates and decimals in storage. SAP counterpart:
+    no SAP equivalent - summarised balances, rewritten by posting.'
+  owner: Finance Data Engineering Team
+models:
+  f0902:
+    type: table
+    fields:
+      gbaid:
+        type: string
+        description: 'Account ID. Part of the JDE primary key. SAP counterpart: RACCT. Physical type in
+          the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      gblt:
+        type: string
+        description: 'Ledger Type. Part of the JDE primary key. SAP counterpart: RLDNR. Physical type
+          in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      gbfy:
+        type: integer
+        description: 'Fiscal Year. Part of the JDE primary key. SAP counterpart: GJAHR. Physical type
+          in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      gbctry:
+        type: integer
+        description: 'Century. Part of the JDE primary key. JDE-only; JDE splits century from year. Physical
+          type in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      gbsbl:
+        type: string
+        description: 'Subledger. Part of the JDE primary key. SAP counterpart: ANLN1. Physical type in
+          the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      gbsblt:
+        type: string
+        description: 'Subledger Type. Part of the JDE primary key. JDE-only; qualifies what GBSBL points
+          at. Physical type in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      gbco:
+        type: string
+        description: 'Company. SAP counterpart: RBUKRS. Physical type in the lakehouse: varchar.'
+      gbmcu:
+        type: string
+        description: 'Business Unit. SAP counterpart: RCNTR. Physical type in the lakehouse: varchar.'
+      gbobj:
+        type: string
+        description: 'Object Account. SAP counterpart: RACCT. Physical type in the lakehouse: varchar.'
+      gbsub:
+        type: string
+        description: 'Subsidiary. SAP counterpart: RACCT. Physical type in the lakehouse: varchar.'
+      gbcrcd:
+        type: string
+        description: 'Currency Code. SAP counterpart: RTCUR. Physical type in the lakehouse: varchar.'
+      gbapyc:
+        type: integer
+        description: 'Prior Year Cumulative. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; JDE prior-year cumulative. Physical type in
+          the lakehouse: bigint.'
+      gban01:
+        type: integer
+        description: 'Period 01 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban02:
+        type: integer
+        description: 'Period 02 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban03:
+        type: integer
+        description: 'Period 03 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban04:
+        type: integer
+        description: 'Period 04 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban05:
+        type: integer
+        description: 'Period 05 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban06:
+        type: integer
+        description: 'Period 06 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban07:
+        type: integer
+        description: 'Period 07 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban08:
+        type: integer
+        description: 'Period 08 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban09:
+        type: integer
+        description: 'Period 09 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban10:
+        type: integer
+        description: 'Period 10 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban11:
+        type: integer
+        description: 'Period 11 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gban12:
+        type: integer
+        description: 'Period 12 Net Posting. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse:
+          bigint.'
+      gbuser:
+        type: string
+        description: 'User ID. SAP counterpart: USNAM. Physical type in the lakehouse: varchar.'
+      gbpid:
+        type: string
+        description: 'Program ID. SAP counterpart: TCODE. Physical type in the lakehouse: varchar.'
+      gbjobn:
+        type: string
+        description: 'Work Station ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      gbupmj:
+        type: integer
+        description: 'Date Updated. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          AEDAT. Physical type in the lakehouse: integer.'
+      gbupmt:
+        type: integer
+        description: 'Time Updated. Stored RAW as a JDE HHMMSS integer, not a time. JDE-only; JDE audit
+          column. Physical type in the lakehouse: integer.'
+      __op:
+        type: string
+        description: 'CDC operation flag: I / U / D. Rows with ''D'' are deletions. Physical type in the
+          lakehouse: varchar.'
+      __ts:
+        type: integer
+        description: 'CDC change sequence, monotonic per key. The version column for change-log dedup.
+          Physical type in the lakehouse: bigint.'

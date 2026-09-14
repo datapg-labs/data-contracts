@@ -1,0 +1,59 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:skb1
+
+info:
+  title: SAP S/4HANA SKB1
+  version: 1.1.0
+  description: GL account company code data.
+  owner: Finance Data Engineering Team
+
+models:
+  skb1:
+    type: table
+
+    fields:
+
+      mandt:
+        type: string
+        description: SAP client.
+        primary_key: true
+
+      bukrs:
+        type: string
+        description: Company code.
+
+      business_key:
+        type: string
+        description: Primary business identifier.
+
+      description:
+        type: string
+        description: Business description.
+
+      created_date:
+        type: string
+        description: Record creation date.
+
+      changed_date:
+        type: string
+        description: Record last change date.
+
+      valid_from:
+        type: string
+        description: Valid from date.
+
+      valid_to:
+        type: string
+        description: Valid to date.
+
+      source_system:
+        type: string
+        description: Source SAP system.
+
+      __op:
+        type: string
+        description: CDC operation type.
+
+      __ts:
+        type: integer
+        description: CDC processing timestamp.

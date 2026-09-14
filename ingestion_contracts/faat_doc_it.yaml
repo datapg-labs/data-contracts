@@ -1,0 +1,61 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:faat_doc_it
+info:
+  title: SAP S/4HANA FAAT_DOC_IT
+  version: 1.1.0
+  description: Universal Journal Asset Line Items (New).
+  owner: Finance Data Engineering Team
+models:
+  faat_doc_it:
+    type: table
+    fields:
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+        required: true
+      anln1:
+        type: string
+        description: Main asset number.
+      anln2:
+        type: string
+        description: Asset subnumber.
+      gjahr:
+        type: string
+        description: Fiscal year.
+        primary_key: true
+        required: true
+      belnr:
+        type: string
+        description: Accounting document number.
+        primary_key: true
+        required: true
+      docln:
+        type: string
+        description: Six-character line item number.
+        primary_key: true
+        required: true
+      slalittype:
+        type: string
+        description: Subledger line item type.
+      tsl:
+        type: number
+        description: Amount in transaction currency.
+      hsl:
+        type: number
+        description: Amount in company code currency.
+      ksl:
+        type: number
+        description: Amount in global currency.
+      osl:
+        type: number
+        description: Amount in freely defined currency 1.
+      bwasl:
+        type: string
+        description: Asset transaction type.
+      afabe:
+        type: string
+        description: Real depreciation area.
+      bzdat:
+        type: string
+        description: Asset value date.

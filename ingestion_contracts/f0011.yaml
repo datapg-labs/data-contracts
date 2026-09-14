@@ -1,0 +1,81 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:jde:e1:f0011
+info:
+  title: JD Edwards EnterpriseOne F0011
+  version: 1.1.0
+  description: 'Batch Control Records (JD Edwards EnterpriseOne 9.2). Values are stored in RAW JDE encoding:
+    julian dates and implied-decimal integers are NOT dates and decimals in storage. SAP counterpart:
+    BKPF.'
+  owner: Finance Data Engineering Team
+models:
+  f0011:
+    type: table
+    fields:
+      icicu:
+        type: integer
+        description: 'Batch Number. Part of the JDE primary key. SAP counterpart: AWREF. Physical type
+          in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      icicut:
+        type: string
+        description: 'Batch Type. Part of the JDE primary key. SAP counterpart: AWTYP. Physical type in
+          the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      icbast:
+        type: string
+        description: 'Batch Status. JDE-only; batch lifecycle has no SAP twin. Physical type in the lakehouse:
+          varchar.'
+      icdicj:
+        type: integer
+        description: 'Batch Date. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          CPUDT. Physical type in the lakehouse: integer.'
+      icdgj:
+        type: integer
+        description: 'G/L Date. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          BUDAT. Physical type in the lakehouse: integer.'
+      ickco:
+        type: string
+        description: 'Document Company. SAP counterpart: BUKRS. Physical type in the lakehouse: varchar.'
+      icaa:
+        type: integer
+        description: 'Batch Total Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. JDE-only; batch control total. Physical type in the
+          lakehouse: bigint.'
+      ictdoc:
+        type: integer
+        description: 'Batch Total Documents. JDE-only; batch control count. Physical type in the lakehouse:
+          bigint.'
+      iccrcd:
+        type: string
+        description: 'Currency Code. SAP counterpart: WAERS. Physical type in the lakehouse: varchar.'
+      icuser:
+        type: string
+        description: 'User ID. SAP counterpart: USNAM. Physical type in the lakehouse: varchar.'
+      icpid:
+        type: string
+        description: 'Program ID. SAP counterpart: TCODE. Physical type in the lakehouse: varchar.'
+      icjobn:
+        type: string
+        description: 'Work Station ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      icupmj:
+        type: integer
+        description: 'Date Updated. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          AEDAT. Physical type in the lakehouse: integer.'
+      icupmt:
+        type: integer
+        description: 'Time Updated. Stored RAW as a JDE HHMMSS integer, not a time. JDE-only; JDE audit
+          column. Physical type in the lakehouse: integer.'
+      __op:
+        type: string
+        description: 'CDC operation flag: I / U / D. Rows with ''D'' are deletions. Physical type in the
+          lakehouse: varchar.'
+      __ts:
+        type: integer
+        description: 'CDC change sequence, monotonic per key. The version column for change-log dedup.
+          Physical type in the lakehouse: bigint.'

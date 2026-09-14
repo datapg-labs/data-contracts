@@ -1,0 +1,374 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:acdoca
+info:
+  title: SAP ACDOCA
+  version: 1.1.0
+  description: SAP S/4HANA ACDOCA dataset.
+  owner: Finance Data Engineering Team
+models:
+  acdoca:
+    type: table
+    fields:
+      rclnt:
+        type: string
+        description: SAP client.
+        primary_key: true
+        required: true
+      rldnr:
+        type: string
+        description: Ledger.
+        primary_key: true
+        required: true
+      rbukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+        required: true
+      gjahr:
+        type: string
+        description: Fiscal year.
+        primary_key: true
+        required: true
+      belnr:
+        type: string
+        description: Accounting document number.
+        primary_key: true
+        required: true
+      docln:
+        type: string
+        description: Accounting document line item.
+        primary_key: true
+        required: true
+      ryear:
+        type: string
+        description: Year of ledger posting.
+      drcrk:
+        type: string
+        description: Debit/Credit indicator.
+      poper:
+        type: string
+        description: Fiscal posting period.
+      fiscyearper:
+        type: string
+        description: Combined fiscal year and posting period.
+      budat:
+        type: string
+        description: Posting date.
+      bldat:
+        type: string
+        description: Document date.
+      blart:
+        type: string
+        description: Document type.
+      bschl:
+        type: string
+        description: Posting key.
+      bstat:
+        type: string
+        description: Document status.
+      linetype:
+        type: string
+        description: Universal journal line item type.
+      ktosl:
+        type: string
+        description: Transaction key for automatic postings.
+      accasty:
+        type: string
+        description: Account assignment type.
+      rtcur:
+        type: string
+        description: Transaction currency.
+      rwcur:
+        type: string
+        description: Original transaction currency.
+      rhcur:
+        type: string
+        description: Local currency.
+      rkcur:
+        type: string
+        description: Group currency.
+      rocur:
+        type: string
+        description: Object currency.
+      rvcur:
+        type: string
+        description: Global company currency.
+      rbcur:
+        type: string
+        description: Functional currency.
+      rccur:
+        type: string
+        description: Controlling area currency.
+      tsl:
+        type: number
+        description: Amount in transaction currency.
+      wsl:
+        type: number
+        description: Amount in original currency.
+      hsl:
+        type: number
+        description: Amount in local currency.
+      ksl:
+        type: number
+        description: Amount in group currency.
+      osl:
+        type: number
+        description: Amount in object currency.
+      vsl:
+        type: number
+        description: Amount in global company currency.
+      bsl:
+        type: number
+        description: Amount in functional currency.
+      csl:
+        type: number
+        description: Amount in controlling area currency.
+      dsl:
+        type: number
+        description: Additional currency amount D.
+      esl:
+        type: number
+        description: Additional currency amount E.
+      fsl:
+        type: number
+        description: Additional currency amount F.
+      gsl:
+        type: number
+        description: Additional currency amount G.
+      msl:
+        type: number
+        description: Quantity-based amount.
+      rmsl:
+        type: number
+        description: Alternative quantity amount.
+      kokrs:
+        type: string
+        description: Controlling area.
+      rcntr:
+        type: string
+        description: Cost center.
+      prctr:
+        type: string
+        description: Profit center.
+      rfarea:
+        type: string
+        description: Functional area.
+      rbusa:
+        type: string
+        description: Business area.
+      segment:
+        type: string
+        description: Segment.
+      scntr:
+        type: string
+        description: Sender cost center.
+      pprctr:
+        type: string
+        description: Partner profit center.
+      sfarea:
+        type: string
+        description: Sender functional area.
+      rassc:
+        type: string
+        description: Trading partner.
+      racct:
+        type: string
+        description: General ledger account.
+      kunnr:
+        type: string
+        description: Customer account number.
+      lifnr:
+        type: string
+        description: Vendor account number.
+      matnr:
+        type: string
+        description: Material number.
+      werks:
+        type: string
+        description: Plant.
+      aufnr:
+        type: string
+        description: Internal order.
+      anln1:
+        type: string
+        description: Main asset number.
+      anln2:
+        type: string
+        description: Asset sub-number.
+      paobjnr:
+        type: string
+        description: Profitability analysis object number.
+      kostl:
+        type: string
+        description: Cost center.
+      mwskz:
+        type: string
+        description: Tax code.
+      taxCountry:
+        type: string
+        description: Tax country.
+      txgrp:
+        type: string
+        description: Tax group.
+      hwbas:
+        type: number
+        description: Tax base amount in local currency.
+      fwbas:
+        type: number
+        description: Tax base amount in transaction currency.
+      mwsts:
+        type: number
+        description: Tax amount.
+      awtyp:
+        type: string
+        description: Reference transaction type.
+      awref:
+        type: string
+        description: Reference document number.
+      awitem:
+        type: string
+        description: Reference document item.
+      aworg:
+        type: string
+        description: Reference organizational unit.
+      awsys:
+        type: string
+        description: Logical source system.
+      subta:
+        type: string
+        description: Sub-transaction type.
+      rebzg:
+        type: string
+        description: Invoice reference document.
+      rebzj:
+        type: string
+        description: Invoice reference fiscal year.
+      rebzz:
+        type: string
+        description: Invoice reference line item.
+      hbkid:
+        type: string
+        description: House bank.
+      hktid:
+        type: string
+        description: Bank account ID.
+      zlsch:
+        type: string
+        description: Payment method.
+      zlspr:
+        type: string
+        description: Payment block indicator.
+      valut:
+        type: string
+        description: Value date.
+      zuonr:
+        type: string
+        description: Assignment number.
+      xref1:
+        type: string
+        description: Reference key 1.
+      bwkey:
+        type: string
+        description: Valuation area.
+      bwtar:
+        type: string
+        description: Valuation type.
+      vprsv:
+        type: string
+        description: Price control indicator.
+      kalnr:
+        type: string
+        description: Cost estimate number.
+      mlast:
+        type: string
+        description: Material ledger status.
+      sobkz:
+        type: string
+        description: Special stock indicator.
+      runit:
+        type: string
+        description: Reference unit of measure.
+      rvunit:
+        type: string
+        description: Valuation unit of measure.
+      riunit:
+        type: string
+        description: Inventory unit of measure.
+      menge:
+        type: number
+        description: Quantity.
+      meins:
+        type: string
+        description: Base unit of measure.
+      usnam:
+        type: string
+        description: User who created the document.
+      timestamp:
+        type: integer
+        description: Source extraction timestamp.
+      objnr:
+        type: string
+        description: Object number.
+      coBelnr:
+        type: string
+        description: Controlling document number.
+      hrkft:
+        type: string
+        description: Origin object.
+      glvor:
+        type: string
+        description: Business transaction.
+      xreversed:
+        type: string
+        description: Reversal indicator.
+      ebeln:
+        type: string
+        description: Purchasing document number.
+      ebelp:
+        type: string
+        description: Purchasing document item.
+      vbeln:
+        type: string
+        description: Sales document number.
+      posnr:
+        type: string
+        description: Sales document item.
+      vkorg:
+        type: string
+        description: Sales organization.
+      vtweg:
+        type: string
+        description: Distribution channel.
+      spart:
+        type: string
+        description: Division.
+      mat_kdgrp:
+        type: string
+        description: Material customer group.
+      mat_mvgr1:
+        type: string
+        description: Material group 1.
+      xblnr:
+        type: string
+        description: Reference document number.
+      xbilk:
+        type: string
+        description: Intercompany billing indicator.
+      koart:
+        type: string
+        description: Auto-added field from Kafka schema.
+      augdt:
+        type: string
+        description: Auto-added field from Kafka schema.
+      augbl:
+        type: string
+        description: Auto-added field from Kafka schema.
+      augcp:
+        type: string
+        description: Auto-added field from Kafka schema.
+      __op:
+        type: string
+        description: CDC operation type.
+      __ts:
+        type: integer
+        description: CDC processing timestamp.

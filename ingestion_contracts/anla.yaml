@@ -1,0 +1,65 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:anla
+info:
+  title: SAP S/4HANA ANLA
+  version: 1.1.0
+  description: Asset master record segment.
+  owner: Finance Data Engineering Team
+models:
+  anla:
+    type: table
+    fields:
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+        required: true
+      anln1:
+        type: string
+        description: Main asset number.
+        primary_key: true
+        required: true
+      anln2:
+        type: string
+        description: Asset subnumber.
+        primary_key: true
+        required: true
+      anlkl:
+        type: string
+        description: Asset class.
+      txt50:
+        type: string
+        description: Asset description.
+      aktiv:
+        type: string
+        description: Asset capitalization date.
+      deakt:
+        type: string
+        description: Asset deactivation date.
+      ernam:
+        type: string
+        description: Name of person who created the object.
+      erdat:
+        type: string
+        description: Date on which record was created.
+      aenam:
+        type: string
+        description: Name of person who changed object.
+      aedat:
+        type: string
+        description: Date of last change.
+      zugdt:
+        type: string
+        description: Asset value date of first posting.
+      invnr:
+        type: string
+        description: Inventory number.
+      lifnr:
+        type: string
+        description: Account number of vendor or creditor.
+      ktogr:
+        type: string
+        description: Account determination.
+      xloev:
+        type: string
+        description: Asset is marked for deletion.

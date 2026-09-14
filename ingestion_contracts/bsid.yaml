@@ -1,0 +1,202 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:bsid
+
+info:
+  title: SAP S/4HANA BSID
+  version: 1.1.0
+  description: Customer Open Items (Accounts Receivable).
+  owner: Finance Data Engineering Team
+
+models:
+  bsid:
+    type: table
+
+    fields:
+
+      mandt:
+        type: string
+        description: SAP client.
+        primary_key: true
+
+      bukrs:
+        type: string
+        description: Company code.
+        primary_key: true
+
+      kunnr:
+        type: string
+        description: Customer account number.
+        primary_key: true
+
+      umsks:
+        type: string
+        description: Special G/L transaction type.
+        primary_key: true
+
+      umskz:
+        type: string
+        description: Special G/L indicator.
+        primary_key: true
+
+      belnr:
+        type: string
+        description: Accounting document number.
+        primary_key: true
+
+      gjahr:
+        type: string
+        description: Fiscal year.
+        primary_key: true
+
+      buzei:
+        type: string
+        description: Line item.
+        primary_key: true
+
+      augdt:
+        type: string
+        description: Clearing date.
+
+      augbl:
+        type: string
+        description: Clearing document number.
+
+      budat:
+        type: string
+        description: Posting date.
+
+      bldat:
+        type: string
+        description: Document date.
+
+      cpudt:
+        type: string
+        description: Entry date.
+
+      blart:
+        type: string
+        description: Document type.
+
+      monat:
+        type: string
+        description: Fiscal period.
+
+      waers:
+        type: string
+        description: Document currency.
+
+      shkzg:
+        type: string
+        description: Debit/credit indicator.
+
+      dmbtr:
+        type: number
+        description: Amount in local currency.
+
+      wrbtr:
+        type: number
+        description: Amount in document currency.
+
+      pswbt:
+        type: number
+        description: Amount in update currency.
+
+      mwskz:
+        type: string
+        description: Tax code.
+
+      zfbdt:
+        type: string
+        description: Baseline date for due date calculation.
+
+      zterm:
+        type: string
+        description: Payment terms.
+
+      zbd1t:
+        type: integer
+        description: Cash discount days 1.
+
+      zbd2t:
+        type: integer
+        description: Cash discount days 2.
+
+      zbd3t:
+        type: integer
+        description: Net payment terms period.
+
+      zbd1p:
+        type: number
+        description: Cash discount percentage 1.
+
+      zbd2p:
+        type: number
+        description: Cash discount percentage 2.
+
+      rebzg:
+        type: string
+        description: Invoice reference document.
+
+      rebzj:
+        type: string
+        description: Invoice reference fiscal year.
+
+      rebzz:
+        type: string
+        description: Invoice reference line item.
+
+      gsber:
+        type: string
+        description: Business area.
+
+      prctr:
+        type: string
+        description: Profit center.
+
+      segment:
+        type: string
+        description: Segment.
+
+      xblnr:
+        type: string
+        description: Reference document number.
+
+      sgtxt:
+        type: string
+        description: Line item text.
+
+      zuonr:
+        type: string
+        description: Assignment number.
+
+      xref1:
+        type: string
+        description: Reference key 1.
+
+      xref2:
+        type: string
+        description: Reference key 2.
+
+      xref3:
+        type: string
+        description: Reference key 3.
+
+      hbkid:
+        type: string
+        description: House bank.
+
+      bschl:
+        type: string
+        description: Posting key.
+
+      koart:
+        type: string
+        description: Account type.
+
+      __op:
+        type: string
+        description: CDC operation type.
+
+      __ts:
+        type: integer
+        description: CDC processing timestamp.

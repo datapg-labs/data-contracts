@@ -1,0 +1,84 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:jde:e1:f1201
+info:
+  title: JD Edwards EnterpriseOne F1201
+  version: 1.1.0
+  description: 'Asset Master (JD Edwards EnterpriseOne 9.2). Values are stored in RAW JDE encoding: julian
+    dates and implied-decimal integers are NOT dates and decimals in storage. SAP counterpart: ANLA.'
+  owner: Finance Data Engineering Team
+models:
+  f1201:
+    type: table
+    fields:
+      fanumb:
+        type: integer
+        description: 'Asset Item Number. Part of the JDE primary key. SAP counterpart: ANLN1. Physical
+          type in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      faaid:
+        type: string
+        description: 'Unit Number. SAP counterpart: ANLN2. Physical type in the lakehouse: varchar.'
+      fasno:
+        type: string
+        description: 'Serial Number. JDE-only; JDE serial number. Physical type in the lakehouse: varchar.'
+      faco:
+        type: string
+        description: 'Company. SAP counterpart: BUKRS. Physical type in the lakehouse: varchar.'
+      famcu:
+        type: string
+        description: 'Business Unit. SAP counterpart: KOSTL. Physical type in the lakehouse: varchar.'
+      fadsc1:
+        type: string
+        description: 'Description. SAP counterpart: TXT50. Physical type in the lakehouse: varchar.'
+      faapc:
+        type: string
+        description: 'Asset Cost Account. SAP counterpart: ANLKL. Physical type in the lakehouse: varchar.'
+      fadaj:
+        type: integer
+        description: 'Date Acquired. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          AKTIV. Physical type in the lakehouse: integer.'
+      faadsp:
+        type: integer
+        description: 'Date Disposal. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          DEAKT. Physical type in the lakehouse: integer.'
+      faeqst:
+        type: string
+        description: 'Equipment Status. SAP counterpart: XLOEV. Physical type in the lakehouse: varchar.'
+      faacl1:
+        type: string
+        description: 'Category Code 1. JDE-only; JDE category code. Physical type in the lakehouse: varchar.'
+      faacl2:
+        type: string
+        description: 'Category Code 2. JDE-only; JDE category code. Physical type in the lakehouse: varchar.'
+      faan8:
+        type: integer
+        description: 'Address Number. SAP counterpart: LIFNR. Physical type in the lakehouse: bigint.'
+      fauser:
+        type: string
+        description: 'User ID. SAP counterpart: ERNAM. Physical type in the lakehouse: varchar.'
+      fapid:
+        type: string
+        description: 'Program ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      fajobn:
+        type: string
+        description: 'Work Station ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      faupmj:
+        type: integer
+        description: 'Date Updated. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          AEDAT. Physical type in the lakehouse: integer.'
+      faupmt:
+        type: integer
+        description: 'Time Updated. Stored RAW as a JDE HHMMSS integer, not a time. JDE-only; JDE audit
+          column. Physical type in the lakehouse: integer.'
+      __op:
+        type: string
+        description: 'CDC operation flag: I / U / D. Rows with ''D'' are deletions. Physical type in the
+          lakehouse: varchar.'
+      __ts:
+        type: integer
+        description: 'CDC change sequence, monotonic per key. The version column for change-log dedup.
+          Physical type in the lakehouse: bigint.'

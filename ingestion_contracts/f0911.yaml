@@ -1,0 +1,191 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:jde:e1:f0911
+info:
+  title: JD Edwards EnterpriseOne F0911
+  version: 1.1.0
+  description: 'Account Ledger (JD Edwards EnterpriseOne 9.2). Values are stored in RAW JDE encoding:
+    julian dates and implied-decimal integers are NOT dates and decimals in storage. SAP counterpart:
+    ACDOCA + BSEG.'
+  owner: Finance Data Engineering Team
+models:
+  f0911:
+    type: table
+    fields:
+      glkco:
+        type: string
+        description: 'Document Company. Part of the JDE primary key. SAP counterpart: RBUKRS. Physical
+          type in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      gldct:
+        type: string
+        description: 'Document Type. Part of the JDE primary key. SAP counterpart: BLART. Physical type
+          in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      gldoc:
+        type: integer
+        description: 'Document Number. Part of the JDE primary key. SAP counterpart: BELNR. Physical type
+          in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      gljeln:
+        type: integer
+        description: 'Journal Entry Line Number. Part of the JDE primary key. SAP counterpart: DOCLN.
+          Physical type in the lakehouse: bigint.'
+        primary_key: true
+        required: true
+      gllt:
+        type: string
+        description: 'Ledger Type. Part of the JDE primary key. SAP counterpart: RLDNR. Physical type
+          in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      glextl:
+        type: string
+        description: 'Line Extension Code. Part of the JDE primary key. JDE-only; part of the JDE key.
+          Physical type in the lakehouse: varchar.'
+        primary_key: true
+        required: true
+      glicu:
+        type: integer
+        description: 'Batch Number. SAP counterpart: AWREF. Physical type in the lakehouse: bigint.'
+      glicut:
+        type: string
+        description: 'Batch Type. SAP counterpart: AWTYP. Physical type in the lakehouse: varchar.'
+      gldicj:
+        type: integer
+        description: 'Batch Date. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          CPUDT. Physical type in the lakehouse: integer.'
+      glpost:
+        type: string
+        description: 'Posted Code. JDE-only; drives the post update. Physical type in the lakehouse: varchar.'
+      gldgj:
+        type: integer
+        description: 'G/L Date. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          BUDAT. Physical type in the lakehouse: integer.'
+      gldsvj:
+        type: integer
+        description: 'Service/Tax Date. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          BLDAT. Physical type in the lakehouse: integer.'
+      glfy:
+        type: integer
+        description: 'Fiscal Year. SAP counterpart: GJAHR. Physical type in the lakehouse: bigint.'
+      glctry:
+        type: integer
+        description: 'Century. JDE-only; JDE splits century from year. Physical type in the lakehouse:
+          bigint.'
+      glpn:
+        type: integer
+        description: 'Period Number. SAP counterpart: POPER. Physical type in the lakehouse: bigint.'
+      glco:
+        type: string
+        description: 'Company. SAP counterpart: RBUKRS. Physical type in the lakehouse: varchar.'
+      glmcu:
+        type: string
+        description: 'Business Unit. SAP counterpart: RCNTR. Physical type in the lakehouse: varchar.'
+      globj:
+        type: string
+        description: 'Object Account. SAP counterpart: RACCT. Physical type in the lakehouse: varchar.'
+      glsub:
+        type: string
+        description: 'Subsidiary. SAP counterpart: RACCT. Physical type in the lakehouse: varchar.'
+      glaid:
+        type: string
+        description: 'Account ID. SAP counterpart: RACCT. Physical type in the lakehouse: varchar.'
+      glani:
+        type: string
+        description: 'Account Number Input. JDE-only; JDE composite account string. Physical type in the
+          lakehouse: varchar.'
+      glsbl:
+        type: string
+        description: 'Subledger. SAP counterpart: ANLN1. Physical type in the lakehouse: varchar.'
+      glsblt:
+        type: string
+        description: 'Subledger Type. JDE-only; qualifies what GLSBL points at. Physical type in the lakehouse:
+          varchar.'
+      glaa:
+        type: integer
+        description: 'Amount. Monetary amount stored RAW as an integer with 2 implied decimal places (divide
+          by 10^2 to get the real value). Not a decimal in storage; a model that unions it against a true
+          DECIMAL must cast it. SAP counterpart: HSL. Physical type in the lakehouse: bigint.'
+      glacr:
+        type: integer
+        description: 'Foreign Amount. Monetary amount stored RAW as an integer with 2 implied decimal
+          places (divide by 10^2 to get the real value). Not a decimal in storage; a model that unions
+          it against a true DECIMAL must cast it. SAP counterpart: WSL. Physical type in the lakehouse:
+          bigint.'
+      glcrcd:
+        type: string
+        description: 'Currency Code. SAP counterpart: RTCUR. Physical type in the lakehouse: varchar.'
+      glcrr:
+        type: integer
+        description: 'Currency Exchange Rate. Monetary amount stored RAW as an integer with 7 implied
+          decimal places (divide by 10^7 to get the real value). Not a decimal in storage; a model that
+          unions it against a true DECIMAL must cast it. JDE-only; rate lives on BKPF in SAP. Physical
+          type in the lakehouse: bigint.'
+      glu:
+        type: integer
+        description: 'Units. Monetary amount stored RAW as an integer with 2 implied decimal places (divide
+          by 10^2 to get the real value). Not a decimal in storage; a model that unions it against a true
+          DECIMAL must cast it. SAP counterpart: MENGE. Physical type in the lakehouse: bigint.'
+      glum:
+        type: string
+        description: 'Unit of Measure. SAP counterpart: MEINS. Physical type in the lakehouse: varchar.'
+      glan8:
+        type: integer
+        description: 'Address Number. SAP counterpart: KUNNR. Physical type in the lakehouse: bigint.'
+      glvinv:
+        type: string
+        description: 'Supplier Invoice Number. SAP counterpart: XBLNR. Physical type in the lakehouse:
+          varchar.'
+      glsfx:
+        type: string
+        description: 'Document Pay Item. JDE-only; JDE pay-item split. Physical type in the lakehouse:
+          varchar.'
+      glr1:
+        type: string
+        description: 'Reference 1. SAP counterpart: ZUONR. Physical type in the lakehouse: varchar.'
+      glexa:
+        type: string
+        description: 'Explanation Alpha Name. SAP counterpart: BKTXT. Physical type in the lakehouse:
+          varchar.'
+      glexr:
+        type: string
+        description: 'Explanation Remark. SAP counterpart: SGTXT. Physical type in the lakehouse: varchar.'
+      glglc:
+        type: string
+        description: 'G/L Offset. JDE-only; JDE AAI offset. Physical type in the lakehouse: varchar.'
+      gltorg:
+        type: string
+        description: 'Transaction Originator. JDE-only; JDE audit column. Physical type in the lakehouse:
+          varchar.'
+      gluser:
+        type: string
+        description: 'User ID. SAP counterpart: USNAM. Physical type in the lakehouse: varchar.'
+      glpid:
+        type: string
+        description: 'Program ID. SAP counterpart: TCODE. Physical type in the lakehouse: varchar.'
+      gljobn:
+        type: string
+        description: 'Work Station ID. JDE-only; JDE audit column. Physical type in the lakehouse: varchar.'
+      glupmj:
+        type: integer
+        description: 'Date Updated. Stored RAW as a JDE julian CYYDDD integer (e.g. 124001 = 2024-01-01),
+          NOT a date. Decode downstream; do not compare or union it against a date or a string. SAP counterpart:
+          AEDAT. Physical type in the lakehouse: integer.'
+      glupmt:
+        type: integer
+        description: 'Time Updated. Stored RAW as a JDE HHMMSS integer, not a time. JDE-only; JDE audit
+          column. Physical type in the lakehouse: integer.'
+      __op:
+        type: string
+        description: 'CDC operation flag: I / U / D. Rows with ''D'' are deletions. Physical type in the
+          lakehouse: varchar.'
+      __ts:
+        type: integer
+        description: 'CDC change sequence, monotonic per key. The version column for change-log dedup.
+          Physical type in the lakehouse: bigint.'

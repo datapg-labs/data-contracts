@@ -1,0 +1,81 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:vbrp
+
+info:
+  title: SAP Billing Document Item (VBRP)
+  version: 1.1.0
+  description: SAP billing document item dataset containing detailed line items for each billing document.
+  owner: Sales Data Engineering Team
+
+models:
+  vbrp:
+    type: table
+
+    fields:
+
+      mandt:
+        type: string
+        primary_key: true
+        description: SAP client
+
+      vbeln:
+        type: string
+        primary_key: true
+        description: Billing document number
+
+      posnr:
+        type: string
+        primary_key: true
+        description: Billing document item
+
+      uepos:
+        type: string
+        description: Higher-level item (BOM structure)
+
+      matnr:
+        type: string
+        description: Material number
+
+      arktx:
+        type: string
+        description: Material description (short text)
+
+      fklmg:
+        type: number
+        description: Billing quantity
+
+      meins:
+        type: string
+        description: Base unit of measure
+
+      vrkme:
+        type: string
+        description: Sales unit
+
+      netwr:
+        type: number
+        description: Net item value
+
+      werks:
+        type: string
+        description: Plant
+
+      lgort:
+        type: string
+        description: Storage location
+
+      zzsource_system:
+        type: string
+        description: Source SAP system identifier
+
+      zzload_timestamp:
+        type: integer
+        description: Load timestamp
+
+      __op:
+        type: string
+        description: CDC operation type
+
+      __ts:
+        type: integer
+        description: CDC processing timestamp

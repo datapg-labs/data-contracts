@@ -1,0 +1,156 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:sap:s4:copa:ce11000
+
+info:
+  title: SAP S/4HANA CO-PA (CE11000)
+  version: 1.1.0
+  description: Profitability Analysis line items (Costing-based CO-PA).
+  owner: Finance Data Engineering Team
+
+models:
+  ce11000:
+    type: table
+
+    fields:
+
+      mandt:
+        type: string
+        primary_key: true
+        description: SAP client
+
+      paledger:
+        type: string
+        primary_key: true
+        description: Profitability ledger
+
+      vrgar:
+        type: string
+        description: Record type
+
+      bukrs:
+        type: string
+        primary_key: true
+        description: Company code
+
+      gjahr:
+        type: string
+        primary_key: true
+        description: Fiscal year
+
+      perio:
+        type: string
+        description: Period
+
+      belnr:
+        type: string
+        primary_key: true
+        description: CO-PA document number
+
+      posnr:
+        type: string
+        primary_key: true
+        description: Line item
+
+      kndnr:
+        type: string
+        description: Customer
+
+      artnr:
+        type: string
+        description: Material
+
+      kunrg:
+        type: string
+        description: Sold-to party
+
+      kunwe:
+        type: string
+        description: Ship-to party
+
+      vkorg:
+        type: string
+        description: Sales organization
+
+      vtweg:
+        type: string
+        description: Distribution channel
+
+      spart:
+        type: string
+        description: Division
+
+      land1:
+        type: string
+        description: Country
+
+      regio:
+        type: string
+        description: Region
+
+      matkl:
+        type: string
+        description: Material group
+
+      prodh:
+        type: string
+        description: Product hierarchy
+
+      werks:
+        type: string
+        description: Plant
+
+      fkimg:
+        type: number
+        description: Billing quantity
+
+      meins:
+        type: string
+        description: Base unit of measure
+
+      waerk:
+        type: string
+        description: Currency
+
+      erlos:
+        type: number
+        description: Revenue
+
+      netwr:
+        type: number
+        description: Net value
+
+      kcmpe:
+        type: number
+        description: Cost component
+
+      vv010:
+        type: number
+        description: Value field 010
+
+      vv020:
+        type: number
+        description: Value field 020
+
+      gross_margin:
+        type: number
+        description: Gross margin
+
+      contribution_margin:
+        type: number
+        description: Contribution margin
+
+      cost_component_1:
+        type: number
+        description: Cost component level 1
+
+      cost_component_2:
+        type: number
+        description: Cost component level 2
+
+      __op:
+        type: string
+        description: CDC operation
+
+      __ts:
+        type: integer
+        description: Processing timestamp
