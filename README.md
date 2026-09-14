@@ -16,10 +16,15 @@ deliberate, reviewed act rather than a side effect of editing a model.
 ## Layout
 
 ```
-_template/contract.yml     copy this
+ingestion_contracts/       one contract per table you can query — read these first
+product_contracts/         contracts for modelled data products
 <your-pg-id>/
-  my-dataset.yml
+  my-dataset.yaml
 ```
+
+`ingestion_contracts/` covers every table in the three shared schemas
+(`crypto_currencies_raw`, `synsap_finance_raw`, `fin_internal_jde`). Copy the
+closest one as the starting point for your own.
 
 ## What a good contract says
 
