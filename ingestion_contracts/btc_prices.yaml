@@ -1,0 +1,102 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:binance:spot:btc_prices
+info:
+  title: Binance BTCUSDT 24h ticker
+  version: 1.0.0
+  description: 'Snapshots of the Binance spot 24-hour rolling ticker for BTCUSDT, polled by a producer,
+    published to Kafka and committed to Iceberg by Kafka Connect. Each row describes the 24 hours ending
+    at closetime, so consecutive rows overlap heavily; this is a ticker log, not a candle table. Prices
+    and quantities arrive from the API as strings and are stored that way. Trino shows every column name
+    in lower case.'
+  owner: Finance Data Engineering Team
+models:
+  btc_prices:
+    type: table
+    fields:
+      symbol:
+        type: string
+        description: 'Trading pair. Always BTCUSDT in this table. Physical type in the lakehouse: varchar.'
+        required: true
+      opentime:
+        type: long
+        description: 'Start of the 24h window, epoch MILLISECONDS (UTC). Use from_unixtime(opentime / 1000).
+          Physical type in the lakehouse: bigint.'
+      closetime:
+        type: long
+        description: 'End of the 24h window, epoch MILLISECONDS (UTC). The natural event time of a row.
+          Physical type in the lakehouse: bigint.'
+        required: true
+      lastprice:
+        type: string
+        description: 'Last traded price at closetime, in USDT. Decimal carried as a string; cast before
+          arithmetic. Physical type in the lakehouse: varchar.'
+      openPrice:
+        type: string
+        description: 'Price at opentime, in USDT. String; cast before arithmetic. Physical type in the lakehouse:
+          varchar.'
+      highPrice:
+        type: string
+        description: 'Highest price in the window, in USDT. String. Physical type in the lakehouse: varchar.'
+      lowPrice:
+        type: string
+        description: 'Lowest price in the window, in USDT. String. Physical type in the lakehouse: varchar.'
+      prevClosePrice:
+        type: string
+        description: 'Close of the previous 24h window, in USDT. String. Physical type in the lakehouse:
+          varchar.'
+      pricechange:
+        type: string
+        description: 'lastprice minus openPrice, in USDT. String. Physical type in the lakehouse: varchar.'
+      priceChangePercent:
+        type: string
+        description: 'Percentage change over the window, already in percent (0.991 means 0.991%, not 99.1%).
+          String. Physical type in the lakehouse: varchar.'
+      weightedAvgPrice:
+        type: string
+        description: 'Volume-weighted average price over the window, in USDT. String. Physical type in the
+          lakehouse: varchar.'
+      volume:
+        type: string
+        description: 'Traded volume in the BASE asset (BTC) over the window. String. Physical type in the
+          lakehouse: varchar.'
+      quoteVolume:
+        type: string
+        description: 'Traded volume in the QUOTE asset (USDT) over the window. String. Physical type in the
+          lakehouse: varchar.'
+      lastQty:
+        type: string
+        description: 'Quantity of the last trade, in BTC. String. Physical type in the lakehouse: varchar.'
+      bidPrice:
+        type: string
+        description: 'Best bid at snapshot time, in USDT. String. Physical type in the lakehouse: varchar.'
+      bidQty:
+        type: string
+        description: 'Quantity at the best bid, in BTC. String. Physical type in the lakehouse: varchar.'
+      askPrice:
+        type: string
+        description: 'Best ask at snapshot time, in USDT. String. Physical type in the lakehouse: varchar.'
+      askQty:
+        type: string
+        description: 'Quantity at the best ask, in BTC. String. Physical type in the lakehouse: varchar.'
+      firstId:
+        type: long
+        description: 'Exchange id of the first trade in the window. Physical type in the lakehouse: bigint.'
+      lastId:
+        type: long
+        description: 'Exchange id of the last trade in the window. Physical type in the lakehouse: bigint.'
+      count:
+        type: long
+        description: 'Number of trades in the window (lastId - firstId + 1). Physical type in the lakehouse:
+          bigint.'
+quality:
+  - type: text
+    description: 'NOT unique on (symbol, closetime): the same ticker snapshot can be written more than
+      once. Deduplicate on (symbol, closetime) before counting or joining.'
+servicelevels:
+  frequency:
+    description: 'A new snapshot is expected about once an hour. Older history in the table was polled
+      much more often, so row density is not uniform over time.'
+  freshness:
+    description: 'The latest closetime should be no more than about 2 hours old.'
+    threshold: 2h
+    timestampField: btc_prices.closetime

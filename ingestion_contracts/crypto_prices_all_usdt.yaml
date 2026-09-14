@@ -1,0 +1,101 @@
+dataContractSpecification: 1.1.0
+id: urn:datacontract:binance:spot:crypto_prices_all_usdt
+info:
+  title: Binance 24h ticker, all symbols (historical)
+  version: 1.0.0
+  description: 'A frozen history of the Binance spot 24-hour rolling ticker across every listed symbol,
+    captured between 2025-12-15 and 2026-02-16. It is NOT updated any more. Despite the name it is not
+    limited to USDT pairs (e.g. MOVETRY is present). Unlike btc_prices, the core price columns were cast
+    to double and renamed at load time; the remaining columns kept their API names and string types.
+    Trino shows every column name in lower case.'
+  owner: Finance Data Engineering Team
+models:
+  crypto_prices_all_usdt:
+    type: table
+    fields:
+      symbol:
+        type: string
+        description: 'Trading pair, base asset followed by quote asset (BTCUSDT, MOVETRY). Physical type in
+          the lakehouse: varchar.'
+        required: true
+      opentime:
+        type: long
+        description: 'Start of the 24h window, epoch MILLISECONDS (UTC). Physical type in the lakehouse:
+          bigint.'
+      closetime:
+        type: long
+        description: 'End of the 24h window, epoch MILLISECONDS (UTC). Physical type in the lakehouse: bigint.'
+        required: true
+      open_price:
+        type: double
+        description: 'Price at opentime, in the quote asset. Physical type in the lakehouse: double.'
+      high_price:
+        type: double
+        description: 'Highest price in the window, in the quote asset. Physical type in the lakehouse: double.'
+      low_price:
+        type: double
+        description: 'Lowest price in the window, in the quote asset. Physical type in the lakehouse: double.'
+      close_price:
+        type: double
+        description: 'Last traded price at closetime, in the quote asset. Physical type in the lakehouse:
+          double.'
+      prevClosePrice:
+        type: string
+        description: 'Close of the previous 24h window. String; cast before arithmetic. Physical type in
+          the lakehouse: varchar.'
+      priceChange:
+        type: double
+        description: 'close_price minus open_price, in the quote asset. Physical type in the lakehouse: double.'
+      priceChangePercent:
+        type: string
+        description: 'Percentage change over the window, already in percent (4.584 means 4.584%). String.
+          Physical type in the lakehouse: varchar.'
+      weightedAvgPrice:
+        type: string
+        description: 'Volume-weighted average price over the window. String. Physical type in the lakehouse:
+          varchar.'
+      base_volume:
+        type: double
+        description: 'Traded volume in the BASE asset over the window. Physical type in the lakehouse: double.'
+      quoteVolume:
+        type: string
+        description: 'Traded volume in the QUOTE asset over the window. String. Physical type in the lakehouse:
+          varchar.'
+      lastQty:
+        type: string
+        description: 'Quantity of the last trade, in the base asset. String. Physical type in the lakehouse:
+          varchar.'
+      bidPrice:
+        type: double
+        description: 'Best bid at snapshot time. Physical type in the lakehouse: double.'
+      bidQty:
+        type: string
+        description: 'Quantity at the best bid, in the base asset. String. Physical type in the lakehouse:
+          varchar.'
+      askPrice:
+        type: double
+        description: 'Best ask at snapshot time. Physical type in the lakehouse: double.'
+      askQty:
+        type: string
+        description: 'Quantity at the best ask, in the base asset. String. Physical type in the lakehouse:
+          varchar.'
+      firstId:
+        type: long
+        description: 'Exchange id of the first trade in the window. Physical type in the lakehouse: bigint.'
+      lastId:
+        type: long
+        description: 'Exchange id of the last trade in the window. Physical type in the lakehouse: bigint.'
+      trade_count:
+        type: long
+        description: 'Number of trades in the window. Physical type in the lakehouse: bigint.'
+      data_source:
+        type: string
+        description: 'Load marker. Always ''live'' in the data as loaded; carries no information today. Physical
+          type in the lakehouse: varchar.'
+quality:
+  - type: text
+    description: 'NOT unique on (symbol, closetime): the same snapshot was written more than once.
+      Deduplicate on (symbol, closetime) before counting or joining.'
+servicelevels:
+  frequency:
+    description: 'None. Historical table, closed at 2026-02-16. Use btc_prices for anything current.'
