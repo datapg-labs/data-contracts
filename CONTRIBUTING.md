@@ -1,103 +1,94 @@
 # Contributing
 
-## Your work lives in your own repository
+This repository is a shared codebase, worked on the way a data team works on one:
+contracts live side by side, every change goes through a pull request, and teammates
+review each other's work before it merges.
 
-This repository is a **template**. It holds the starting point and the worked
-examples, and it is kept in shape for everyone. Your own work is not merged into
-it — it lives in a repository you own:
+## How the repository is organised
 
-1. Open [datapg-labs/data-contracts](https://github.com/datapg-labs/data-contracts) and click
-   **Use this template → Create a new repository**.
-2. Choose **your own GitHub account** as the owner. Public or private is up to you.
-3. Clone your new repository to your own machine (next section).
+```
+reference/                  maintained contracts — read them, don't edit them
+  ingestion_contracts/      one per table you can query
+  product_contracts/
+projects/                   learner contracts, one directory per project
+  btc-daily-candles/
+    README.md               Authors: @alice, @bob
+    btc_daily_candles.yaml
+```
 
-From then on it is yours: commit and push whenever you like, organise it however
-you like, and it shows on your GitHub profile. Nobody has to approve anything
-before you can keep going.
+- **`reference/`** is kept in shape for everyone. Only maintainers change it. Found a
+  mistake in a reference contract? Open an issue.
+- **`projects/<name>/`** belongs to the people on its `Authors:` line. Name a project
+  after the dataset it describes (`btc-daily-candles`), not after a person.
 
-Why not one shared repository with a directory per person? Every change would wait
-on one reviewer, anyone with access could edit anyone else's folder, and your work
-would live in someone else's organisation instead of on your profile.
+## Start a project
+
+```bash
+git clone https://github.com/datapg-labs/data-contracts.git
+cd data-contracts
+git checkout -b btc-daily-candles
+mkdir -p projects/btc-daily-candles
+cp reference/ingestion_contracts/btc_prices.yaml projects/btc-daily-candles/btc_daily_candles.yaml
+```
+
+1. Add `projects/btc-daily-candles/README.md` with your handle on its `Authors:` line:
+   `Authors: @your-github-user` — and say which dataset the contracts describe and who
+   consumes it.
+2. Edit the contract until it says what a consumer may rely on — see the README for
+   what a good contract covers.
+3. Commit, push your branch, and open a pull request.
+
+If you have not accepted your `datapg-labs` invitation yet, fork the repository and
+open the pull request from your fork — everything else is the same.
+
+## Work on someone else's project
+
+Projects are meant to be shared. To join one, open a pull request whose **only**
+change adds your handle to that project's `Authors:` line. One of its authors reviews
+it; once it merges you work on the project like any other author.
+
+To suggest a change without joining, open an issue or comment on a pull request.
+
+## Reviews
+
+A pull request merges when it has:
+
+1. **A peer review.** Ask a teammate — an author of the project, or whoever consumes the
+   dataset. A contract is a promise to someone else, so the consumer's view matters most.
+2. **A maintainer's approval.** Maintainers merge; you don't need to chase them.
+3. **A passing scope check** (next section).
+
+What a good review looks for:
+
+- Does the contract match the real table? Check the columns and types in Hue.
+- Are the guarantees ones the producer can actually keep — uniqueness, freshness,
+  what may change?
+- Would a consumer understand what each coded value means?
+- No credentials, tokens, keys, or `.env` files. Not even fake-looking ones.
+
+Expect comments on your pull requests; they are meant to teach, not to reject.
+
+## The scope check
+
+An automated check runs on every pull request. It fails, and says exactly which file
+and why, when a pull request:
+
+- changes anything outside `projects/` — `reference/`, the docs, `.github/` — unless
+  you are a maintainer
+- changes a project you are not an author of (joining, as above, is the exception)
+- adds a project without a `README.md` that lists you on its `Authors:` line
+- adds a credentials file (`.env`, `*.pem`, a private key) or a line that looks like a
+  hard-coded password, token or key
 
 ## Clone locally, with your own GitHub account
 
 **Do not use the browser-based VS Code on the platform for git work.** It is a
 shared workspace. Pushing from it would mean putting your GitHub credentials
 somewhere other people can reach, and any commit you made would be attributed to
-whoever set the workspace up.
-
-Clone to your own machine, with your own identity:
-
-```bash
-git clone https://github.com/<your-github-user>/<your-repo>.git
-cd <your-repo>
-```
-
-## Where your code runs
-
-The platform's services — Kafka, Trino, the lakehouse — are only reachable from
-inside the platform. Write and run your code in **JupyterHub** (or a platform VS
-Code workspace if you have one), then copy it into your local clone to commit.
-Your laptop and GitHub Actions cannot reach those services. The two halves are
-separate on purpose.
-
-## Improving this template
-
-Pull requests to this repository are welcome when they improve the shared material
-for everyone: a mistake in the docs, a contract that no longer matches its table, a
-clearer description of what a field means. They are not the place for your own contracts.
-
-1. Fork `datapg-labs/data-contracts` and create a branch in your fork
-2. Make one focused change
-3. Open a pull request that says what was wrong and how you checked the fix
-
-Every pull request here is reviewed before it merges. Expect comments; they are
-meant to teach, not to reject. A review looks for:
-
-- A change that helps the next learner, not just you
-- Nothing personal: no platform IDs, no notebooks full of your own output
-- No credentials, tokens, keys, or `.env` files. Not even fake-looking ones.
-
-## Show what you built
-
-Built something worth seeing? Open an issue in this repository titled
-`Showcase: <what you built>`, link your repository, and say what you learned. The
-best ones get linked from the README, so the next person can learn from them.
-
-## Platform limits
-
-These are enforced by the platform on your platform account, wherever your code
-lives. Hitting them produces a real error, so it is worth knowing them before you
-are confused by one.
-
-| Limit | Value |
-|---|---|
-| Kafka topics you may create | Must start with `<your-pg-id>.` — e.g. `pgXXXX.orders` |
-| Kafka consumer groups | Same prefix rule |
-| Produce rate | 1 MB/s |
-| Consume rate | 2 MB/s |
-| Kafka retention | 24 hours, 1 GB per partition |
-| Topic auto-creation | **Off.** Create topics explicitly |
-| Lakehouse | Shared datasets read-only; write only to your own `pgXXXX` schema |
-
-Anything outside your prefix fails with `TopicAuthorizationFailedError`, and a
-topic you have no rights to is reported as "does not exist" rather than
-"forbidden" — so if a topic seems mysteriously missing, check the prefix first.
+whoever set the workspace up. Clone to your own machine, with your own identity.
 
 ## CI
 
-In your own repository, use **GitHub-hosted runners**. They cannot reach the
-platform, so use CI for checks that don't need it — YAML and contract validation.
-
-In this repository, never add `runs-on: self-hosted` — a pull request that does
+Workflows run on **GitHub-hosted runners** only, and live in `.github/`, which
+maintainers look after. Never add `runs-on: self-hosted` — a pull request that does
 will be closed.
-
-## Getting your credentials
-
-Your platform credentials are at
-**[datapg.dev/credentials](https://datapg.dev/credentials)** once you are signed
-in. They are yours; anyone you share them with is acting as you.
-
-Never commit them — not to this repository, and not to your own, even if it is
-private. Private repositories get made public, forked and shared. Read them from
-the environment instead.

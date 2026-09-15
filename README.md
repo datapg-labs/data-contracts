@@ -6,9 +6,8 @@ the fields are, what they mean, what may change, and who to ask.
 A contract is the thing that stops "someone renamed a column" from being
 discovered by a broken dashboard on a Monday morning.
 
-This repository is a **template**. Click **Use this template** on GitHub to create
-your own copy under your own account, and write your contracts there — see
-[CONTRIBUTING.md](CONTRIBUTING.md).
+This is a shared repository: contracts live side by side, changes go through pull
+requests, and teammates review each other's work. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Why this repo exists separately
 
@@ -20,13 +19,15 @@ deliberate, reviewed act rather than a side effect of editing a model.
 ## Layout
 
 ```
-ingestion_contracts/       one contract per table you can query — read these first
-product_contracts/         contracts for modelled data products
+reference/
+  ingestion_contracts/     one contract per table you can query — read these first
+  product_contracts/       contracts for modelled data products
+projects/<name>/           learner contracts — README.md lists the authors
 ```
 
-`ingestion_contracts/` covers every table in the three shared schemas
-(`crypto_currencies_raw`, `synsap_finance_raw`, `fin_internal_jde`). In your own
-repository, copy the closest one as the starting point for your own.
+`reference/ingestion_contracts/` covers every table in the three shared schemas
+(`crypto_currencies_raw`, `synsap_finance_raw`, `fin_internal_jde`). Copy the closest
+one into your project as a starting point.
 
 ## What a good contract says
 
@@ -44,6 +45,5 @@ would not.
 
 ## Contributing
 
-Your own contracts live in your own repository. A pull request here changes a
-contract other people rely on, so it is reviewed more carefully than code — see
-[CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md). A change to a contract is a promise to someone
+else, so contract pull requests are reviewed more carefully than code.
