@@ -4,6 +4,13 @@ Everything reaches `main` through a pull request, and every pull request is revi
 before it merges. A contract is a promise to someone else, so contract changes are
 reviewed more carefully than code.
 
+## Join the Discord
+
+**[datapg.dev/discord](https://datapg.dev/discord)** is where the community lives. Ask
+there when you are stuck, find the team that produces or consumes the data you are
+describing, and post your pull request when it is ready for review. Never paste
+credentials into Discord.
+
 ## Where things go
 
 ```
@@ -24,20 +31,35 @@ description.
 
 ## The flow
 
-```bash
-git clone https://github.com/datapg-labs/data-contracts.git
-cd data-contracts
-git checkout -b pgxxxx-orders-contract
-cp ingestion_contracts/btc_prices.yaml ingestion_contracts/pgxxxx_orders.yaml
-```
+Nobody pushes to `datapg-labs` directly — every change arrives from a **fork**.
 
-1. Edit the contract until it says what a consumer may rely on — see the README for what
+1. Fork the repository on GitHub (the **Fork** button, top right), then clone your fork:
+
+   ```bash
+   git clone https://github.com/<your-github-user>/data-contracts.git
+   cd data-contracts
+   git remote add upstream https://github.com/datapg-labs/data-contracts.git
+   git checkout -b pgxxxx-orders-contract
+   cp ingestion_contracts/btc_prices.yaml ingestion_contracts/pgxxxx_orders.yaml
+   ```
+
+2. Edit the contract until it says what a consumer may rely on — see the README for what
    a good contract covers.
-2. Commit, push your branch, and open a pull request. Say which project produces the data
-   and who consumes it.
+3. Commit, push the branch to your fork (`git push -u origin pgxxxx-orders-contract`), and
+   open a pull request into `datapg-labs/data-contracts`. Say which project produces the
+   data and who consumes it.
 
-If you cannot push branches to `datapg-labs`, fork the repository and open the pull
-request from your fork; everything else is the same.
+Before you start something new, bring your fork up to date — **Sync fork** on GitHub, or
+`git fetch upstream && git switch main && git merge --ff-only upstream/main`.
+
+Writing the contract for a project a team is building? Ask for collaborator access to their
+fork, or open your own pull request here and link theirs.
+
+## Reviews and merging
+
+A pull request merges once a member of the **reviewers** team approves it — someone other
+than the author. Automated checks run on every pull request; on your first one they wait
+until a maintainer approves the run — GitHub does that for every new contributor.
 
 ## What a review looks for
 
@@ -55,7 +77,7 @@ Expect comments; they are meant to teach, not to reject.
 
 **Do not use the browser-based VS Code on the platform for git work.** It is a shared
 workspace. Pushing from it would mean putting your GitHub credentials somewhere other
-people can reach. Clone to your own machine, with your own identity.
+people can reach. Clone your fork to your own machine, with your own identity.
 
 ## CI
 
